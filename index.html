@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find Mumbai cafes that fit your mood, from quiet reading corners to pet-friendly patios.">
+  <meta name="theme-color" content="#f7f4ee">
+  <title>CafeHoppers — Find your kind of corner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <main id="auth-view" class="auth-layout">
+    <section class="auth-story" aria-label="CafeHoppers introduction">
+      <div class="brand brand-light"><span class="brand-mark">c.</span> cafehoppers</div>
+      <div class="story-copy">
+        <p class="eyebrow">A LITTLE SPACE FOR YOURSELF</p>
+        <h1>Find your<br>kind of <em>corner.</em></h1>
+        <p>For slow mornings, deep focus, four-legged friends and conversations that run long.</p>
+      </div>
+      <p class="story-foot">A more thoughtful way to find your next favourite cafe.</p>
+    </section>
+    <section class="auth-panel">
+      <div class="auth-topline"><span class="brand"><span class="brand-mark">c.</span> cafehoppers</span><span class="small-muted">Mumbai edition</span></div>
+      <div class="auth-card">
+        <p class="eyebrow" id="auth-eyebrow">YOUR NEXT LITTLE DISCOVERY</p>
+        <h2 id="auth-title">Welcome back.</h2>
+        <p class="auth-subtitle" id="auth-subtitle">Sign in to find a space that feels like yours.</p>
+        <form id="auth-form">
+          <div id="name-field" class="field hidden">
+            <label for="auth-name">Your name</label>
+            <input id="auth-name" name="name" autocomplete="name" placeholder="What should we call you?">
+          </div>
+          <div class="field">
+            <label for="auth-email">Email address</label>
+            <input id="auth-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field">
+            <label for="auth-password">Password</label>
+            <input id="auth-password" name="password" type="password" autocomplete="current-password" minlength="4" placeholder="At least 4 characters" required>
+          </div>
+          <p id="auth-error" class="form-error" role="alert"></p>
+          <button class="button button-dark button-wide" type="submit" id="auth-submit">Sign in <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="switch-auth"><span id="switch-copy">New around here?</span> <button id="switch-auth" class="text-button" type="button">Create an account</button></p>
+        <div class="auth-divider"><span>or</span></div>
+        <button id="guest-button" class="button button-outline button-wide" type="button">Explore as a guest</button>
+        <p class="demo-note">Demo mode: this prototype stores a local profile in this browser only. It is not secure production authentication.</p>
+      </div>
+      <p class="legal-note">Made for curious people and the places that welcome them.</p>
+    </section>
+  </main>
+
+  <main id="app-view" class="app-view hidden">
+    <header class="site-header">
+      <a href="#" class="brand" id="home-link" aria-label="CafeHoppers home"><span class="brand-mark">c.</span> cafehoppers</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#discover" class="nav-link active">Discover</a>
+        <a href="#saved" class="nav-link">My little black book <span id="saved-nav-count" class="nav-count">0</span></a>
+      </nav>
+      <div class="header-actions">
+        <span class="city-label"><span aria-hidden="true">⌖</span> Mumbai</span>
+        <button id="profile-button" class="profile-button" type="button" aria-label="Sign out"><span id="profile-initial">G</span></button>
+      </div>
+    </header>
+
+    <section class="welcome-band" id="discover">
+      <div class="welcome-copy">
+        <p class="eyebrow">YOUR CITY, AT YOUR OWN PACE</p>
+        <h1>Where are you in<br>the mood to <em>be?</em></h1>
+        <p>Not just a place to eat. A place that fits your kind of day.</p>
+      </div>
+      <div class="welcome-stamp"><span>THE</span><strong>MUMBAI<br>CAFE EDIT</strong><span>VOL. 01 · 2026</span></div>
+    </section>
+
+    <section class="discovery-shell" aria-label="Cafe discovery">
+      <div class="discovery-toolbar">
+        <div>
+          <p class="eyebrow">THE LOCAL LIST</p>
+          <h2>Find your corner<span class="period">.</span></h2>
+        </div>
+        <div class="search-wrap">
+          <label class="sr-only" for="search-input">Search cafes, neighbourhoods or vibes</label>
+          <span aria-hidden="true">⌕</span>
+          <input id="search-input" type="search" placeholder="Cafe, neighbourhood, a feeling...">
+          <button id="clear-search" class="clear-search hidden" type="button" aria-label="Clear search">×</button>
+        </div>
+      </div>
+
+      <div class="filter-panel">
+        <div class="filter-heading">
+          <div><span class="filter-icon">☷</span><strong>Find by your vibe</strong><span class="filter-hint">Choose as many as you like</span></div>
+          <button id="clear-filters" class="text-button" type="button">Clear all</button>
+        </div>
+        <div class="dropdown-row">
+          <div class="multi-select" id="vibe-select">
+            <button id="vibe-toggle" class="dropdown-trigger" type="button" aria-expanded="false" aria-controls="vibe-menu">
+              <span id="vibe-label">What kind of space are you looking for?</span><span aria-hidden="true">⌄</span>
+            </button>
+            <div id="vibe-menu" class="dropdown-menu hidden">
+              <p class="dropdown-caption">YOUR KIND OF PLACE</p>
+              <label class="option-row"><input type="checkbox" value="pet"> <span class="option-emoji">🐾</span><span><strong>Pet-friendly</strong><small>Bring your plus-one with paws</small></span></label>
+              <label class="option-row"><input type="checkbox" value="work"> <span class="option-emoji">⌘</span><span><strong>Work-friendly</strong><small>For laptop days and deep focus</small></span></label>
+              <label class="option-row"><input type="checkbox" value="quiet"> <span class="option-emoji">☾</span><span><strong>Quiet & reading</strong><small>A slower, softer atmosphere</small></span></label>
+              <label class="option-row"><input type="checkbox" value="date"> <span class="option-emoji">♡</span><span><strong>Date night</strong><small>Good lighting, better company</small></span></label>
+              <label class="option-row"><input type="checkbox" value="outdoor"> <span class="option-emoji">☼</span><span><strong>Outdoor seating</strong><small>Fresh air with your coffee</small></span></label>
+              <label class="option-row"><input type="checkbox" value="solo"> <span class="option-emoji">◌</span><span><strong>Solo-friendly</strong><small>Lovely even on your own</small></span></label>
+              <label class="option-row"><input type="checkbox" value="study"> <span class="option-emoji">✎</span><span><strong>Study-friendly</strong><small>Settle in and get it done</small></span></label>
+              <label class="option-row"><input type="checkbox" value="artsy"> <span class="option-emoji">✳</span><span><strong>Artsy & aesthetic</strong><small>Inspiring corners and details</small></span></label>
+              <div class="dropdown-footer"><span id="selected-count">0 selected</span><button id="apply-filters" class="button button-dark" type="button">Show my spots</button></div>
+            </div>
+          </div>
+          <label class="neighbourhood-select"><span class="sr-only">Filter by neighbourhood</span>
+            <select id="area-filter">
+              <option value="All">All neighbourhoods</option>
+              <option value="Bandra">Bandra</option>
+              <option value="Bandra West">Bandra West</option>
+              <option value="Khar">Khar</option>
+              <option value="Andheri">Andheri</option>
+              <option value="Colaba">Colaba</option>
+              <option value="Fort">Fort</option>
+              <option value="Juhu">Juhu</option>
+            </select>
+          </label>
+          <label class="neighbourhood-select"><span class="sr-only">Sort cafes</span>
+            <select id="sort-filter">
+              <option value="curated">Sort: Curated for you</option>
+              <option value="name">Name: A to Z</option>
+              <option value="price-low">Price: Low to high</option>
+              <option value="price-high">Price: High to low</option>
+            </select>
+          </label>
+        </div>
+        <div id="active-chips" class="active-chips" aria-live="polite"></div>
+      </div>
+
+      <div class="results-heading"><p id="results-summary">A few places to begin</p><span class="sample-label">CURATED SAMPLE LIST</span></div>
+      <div id="cafe-grid" class="cafe-grid"></div>
+      <div id="empty-state" class="empty-state hidden">
+        <span class="empty-icon">⌕</span><h3>No corners found just yet.</h3><p>Try removing a filter or searching another neighbourhood.</p><button id="reset-empty" class="button button-outline" type="button">Reset discovery</button>
+      </div>
+      <p class="data-disclaimer">A thoughtful starting list, not live listings. Cafe names and attributes in this prototype are illustrative sample data; please verify details directly before visiting.</p>
+    </section>
+
+    <section id="saved" class="saved-section">
+      <div class="saved-intro"><p class="eyebrow">KEEP THE GOOD ONES CLOSE</p><h2>My little black book<span class="period">.</span></h2><p>Save a spot for a future mood, a slow Sunday, or a plan that hasn't happened yet.</p></div>
+      <div id="saved-grid" class="saved-grid"></div>
+      <p id="saved-empty" class="saved-empty">Your book is waiting for its first little discovery. Tap the heart on any cafe to save it here.</p>
+    </section>
+    <footer class="site-footer"><a href="#" class="brand"><span class="brand-mark">c.</span> cafehoppers</a><p>Discover local. Sip slowly. Stay curious.</p><span>AN INDEPENDENT CAFE DISCOVERY CONCEPT · MUMBAI</span></footer>
+  </main>
+
+  <div id="detail-modal" class="modal-backdrop hidden" role="presentation">
+    <section class="detail-modal" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+      <button id="close-modal" class="modal-close" type="button" aria-label="Close cafe details">×</button>
+      <div id="detail-content"></div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
